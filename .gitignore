@@ -68,3 +68,5 @@ build/
 website/build
 website/.docusaurus
 website/.cache-loader
+
+*.pem

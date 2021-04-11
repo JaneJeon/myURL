@@ -4,18 +4,25 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./config/keycloak.json:/mnt/keycloak.json
+      - ../keycloak.json:/mnt/keycloak.json
     environment:
       DB_VENDOR: H2
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: password
       KEYCLOAK_IMPORT: /mnt/keycloak.json
+  reverse-proxy:
+    image: caddy:alpine
+    ports:
+      - 1443:443
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ../caddy:/config
   pgweb:
     image: sosedoff/pgweb
     ports:
       - 8081:8081
     volumes:
-      - ./scripts/wait-for.sh:/mnt/wait-for.sh
+      - ../../scripts/wait-for.sh:/mnt/wait-for.sh
     environment:
       - DATABASE_URL=postgres://knex@postgres/blink?sslmode=disable
     depends_on:

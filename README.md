@@ -81,7 +81,7 @@ In fact, this project is essentially a "proving ground" for such a concept, whic
 
 ### Before you start
 
-1. Run `make up` (need docker/docker-compose installed)
+1. Run `make dev` (need docker/docker-compose installed)
 
 2. On your docker-compose logs, you should be able to see when the `keycloak` container finishes initializing (it says something like "admin panel listening at http://localhost:8080"). Once it is ready, go to said admin panel, login with `admin`/`password`.
 
